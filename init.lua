@@ -112,7 +112,7 @@ minetest.register_on_chat_message(function(name, message)
 			local player = minetest.get_player_by_name(name)
 
 			local p = player:get_pos()
-
+			minetest.sound_play("emoji_sound", { pos = p, max_hear_distance = 12, gain = 1.0, })
 			minetest.add_particlespawner(
 				1,                     --amount
 				0.01,                  --time
