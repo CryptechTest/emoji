@@ -106,10 +106,7 @@ end)
 
 
 minetest.register_on_chat_message(function(name, message)
-	minetest.log("name:" .. name)
-	minetest.log("message:" .. message)
 	local checkingmessage = (name .. " " .. message .. " ")
-
 	for _, v in pairs(vals) do
 		if string.find(checkingmessage, v[2], 1, true) ~= nil then
 			local player = minetest.get_player_by_name(name)
@@ -132,7 +129,6 @@ minetest.register_on_chat_message(function(name, message)
 				false,                 --collisiondetection
 				v[1] .. ".png"
 			)
-			return true
 		end
 	end
 end)
