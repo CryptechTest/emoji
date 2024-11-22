@@ -81,23 +81,27 @@ minetest.register_on_player_receive_fields(function(player, formname, fields)
 		for _, v in pairs(vals) do
 			if fields[v[1]] then
 				minetest.sound_play("emoji_sound", { pos = pos, max_hear_distance = 12, gain = 1.0, })
-
-				minetest.add_particlespawner(
-					1,                        --amount
-					0.01,                     --time
-					{ x = pos.x, y = pos.y + 2, z = pos.z }, --minpos
-					{ x = pos.x, y = pos.y + 2, z = pos.z }, --maxpos
-					{ x = 0, y = 0.15, z = 0 }, --minvel
-					{ x = 0, y = 0.15, z = 0 }, --maxvel
-					{ x = 0, y = 0, z = 0 },  --minacc
-					{ x = 0, y = 0, z = 0 },  --maxacc
-					2.5,                      --minexptime
-					2.5,                      --maxexptime
-					9,                        --minsize
-					9,                        --maxsize
-					false,                    --collisiondetection
-					v[1] .. ".png"
-				)
+				local particle = {
+					amount = 1,
+					time = 0.01,
+					collisiondetection = false,
+					collision_removal = false,
+					object_collision = false,
+					vertical = false,
+					texture = v[1] .. ".png",
+					glow = 7,
+					minpos = { x = pos.x, y = pos.y + 2, z = pos.z },
+					maxpos = { x = pos.x, y = pos.y + 2, z = pos.z },
+					minvel = { x = 0, y = 0.15, z = 0 },
+					maxvel = { x = 0, y = 0.15, z = 0 },
+					minacc = { x = 0, y = 0, z = 0 },
+					maxacc = { x = 0, y = 0, z = 0 },
+					minexptime = 2.5,
+					maxexptime = 2.5,
+					minsize = 9,
+					maxsize = 9,
+				}
+				minetest.add_particlespawner(particle)
 			end
 		end
 	end
@@ -113,22 +117,27 @@ minetest.register_on_chat_message(function(name, message)
 
 			local p = player:get_pos()
 			minetest.sound_play("emoji_sound", { pos = p, max_hear_distance = 12, gain = 1.0, })
-			minetest.add_particlespawner(
-				1,                     --amount
-				0.01,                  --time
-				{ x = p.x, y = p.y + 2, z = p.z }, --minpos
-				{ x = p.x, y = p.y + 2, z = p.z }, --maxpos
-				{ x = 0, y = 0.15, z = 0 }, --minvel
-				{ x = 0, y = 0.15, z = 0 }, --maxvel
-				{ x = 0, y = 0, z = 0 }, --minacc
-				{ x = 0, y = 0, z = 0 }, --maxacc
-				2.5,                   --minexptime
-				2.5,                   --maxexptime
-				9,                     --minsize
-				9,                     --maxsize
-				false,                 --collisiondetection
-				v[1] .. ".png"
-			)
+			local particle = {
+				amount = 1,
+				time = 0.01,
+				collisiondetection = false,
+				collision_removal = false,
+				object_collision = false,
+				vertical = false,
+				texture = v[1] .. ".png",
+				glow = 7,
+				minpos = { x = p.x, y = p.y + 2, z = p.z },
+				maxpos = { x = p.x, y = p.y + 2, z = p.z },
+				minvel = { x = 0, y = 0.15, z = 0 },
+				maxvel = { x = 0, y = 0.15, z = 0 },
+				minacc = { x = 0, y = 0, z = 0 },
+				maxacc = { x = 0, y = 0, z = 0 },
+				minexptime = 2.5,
+				maxexptime = 2.5,
+				minsize = 9,
+				maxsize = 9,
+			}
+			minetest.add_particlespawner(particle)
 		end
 	end
 end)
